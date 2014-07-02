@@ -1,0 +1,20 @@
+heat_template_version: 2013-05-23
+description: Single compute instance running Fedora in a Docker container.
+parameters:
+  image_id:
+    type: string
+  random_key_name:
+    type: string
+resources:
+  my_instance:
+    type: OS::Nova::Server
+    properties:
+      key_name: {get_param: random_key_name}
+      image: {get_param: image_id}
+      flavor: m1.large
+      user_data: #include https://get.docker.io
+  my_docker_container:
+    type: DockerInc::Docker::Container
+    properties:
+      docker_endpoint: { get_attr: [my_instance, first_address] }
+      image: {get_param: image_id}

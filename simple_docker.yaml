@@ -9,12 +9,15 @@ resources:
   my_instance:
     type: OS::Nova::Server
     properties:
-      key_name: {get_param: random_key_name}
-      image: {get_param: image_id}
+      key_name: {get_param: key_name}
+      availability_zone: docker
+      image: {get_param: image_name}
       flavor: m1.large
       user_data: #include https://get.docker.io
+      networks:
+        network: demo-net
   my_docker_container:
     type: DockerInc::Docker::Container
     properties:
       docker_endpoint: { get_attr: [my_instance, first_address] }
-      image: {get_param: image_id}
+      image: {get_param: image_name}

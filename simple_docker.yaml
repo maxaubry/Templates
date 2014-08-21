@@ -14,7 +14,7 @@ resources:
       image: {get_param: image_name}
       flavor: m1.medium
       user_data: #include https://get.docker.io
-      networks: 2d5929b5-aaec-47ae-b38c-55a51a32f088 
+      networks: {network:demo-net} 
   my_docker_container:
     type: DockerInc::Docker::Container
     properties:

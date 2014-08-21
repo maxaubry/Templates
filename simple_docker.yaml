@@ -15,7 +15,7 @@ resources:
       flavor: m1.medium
       user_data: #include https://get.docker.io
       networks:
-        network: demo-net
+        network: 2d5929b5-aaec-47ae-b38c-55a51a32f088 
   my_docker_container:
     type: DockerInc::Docker::Container
     properties:

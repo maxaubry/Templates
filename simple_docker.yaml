@@ -1,9 +1,9 @@
 heat_template_version: 2013-05-23
 description: Single compute instance running Fedora in a Docker container.
 parameters:
-  image_id:
+  image_name:
     type: string
-  random_key_name:
+  key_name:
     type: string
 resources:
   my_instance:
@@ -12,7 +12,7 @@ resources:
       key_name: {get_param: key_name}
       availability_zone: docker
       image: {get_param: image_name}
-      flavor: m1.large
+      flavor: m1.medium
       user_data: #include https://get.docker.io
       networks:
         network: demo-net

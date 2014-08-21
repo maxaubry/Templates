@@ -18,5 +18,5 @@ resources:
   my_docker_container:
     type: DockerInc::Docker::Container
     properties:
-#      docker_endpoint: { get_attr: [my_instance, first_address] }
+      docker_endpoint: { get_attr: [my_instance, network_ip] }
       image: {get_param: image_name}
